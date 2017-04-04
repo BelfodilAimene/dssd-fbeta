@@ -17,5 +17,9 @@ The boxplots of the label distributions of the six datasets in [data](data/) are
 ## [xlbeta](experiments/xlbeta) 
 The script given in [xlbeta experiment](experiments/xlbeta) show how to draw the **boxplot** with its **dynamic beta plot** for the desired dataset. Please read [xp.sh](experiments/xlbeta/xp.sh) to see how to plot the desired dataset. The used script (to customize manually **xbeta** and **lbeta** parameters) is given in [script.py](scripts/script.py).
 
+## [mcts](experiments/mcts)
+The main experiments results of the paper is given by the script [xp.sh](experiments/mcts/xp.sh). Please comment the undesired files before launching the script. 
 
+Note that the last line of the script ```./launch.sh ../../data/reducedFlags.arff numeric 1``` contains a second parameter ```1``` which is used to test the **MCTS** method against the **complete method** via a **boxplot** as shown in the below image. Note that when testing against the **complete method**, the dataset should be small (the number of patterns is combinatorial). 
 
+![](experiments/mcts/results/reducedFlags_numeric_6_200_0.5_jaccardSupportDescription/boxplot-RelativeFBeta.png?raw=true)

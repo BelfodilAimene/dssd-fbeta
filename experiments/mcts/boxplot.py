@@ -10,7 +10,6 @@ from os import listdir
 import math
 
 # --------------------------------------------------------------------
-TOP=1000
 FONTSIZE=20
 # --------------------------------------------------------------------
 def evaluate(element) :
@@ -19,7 +18,7 @@ def evaluate(element) :
     except Exception :
         return float("inf")
 # --------------------------------------------------------------------
-def boxplot(baseFolder, measureName):
+def boxplot(baseFolder, measureName, TOP):
     iterations = [ name for name in listdir(baseFolder) if isdir(join(baseFolder, name))]
     iterations = sorted(iterations, key = evaluate)
     toPlotFiles = [baseFolder+"/"+it+"/"+measureName+"/measures.csv" for it in iterations]
@@ -29,7 +28,10 @@ def boxplot(baseFolder, measureName):
         with open(valuefile,"r") as f :
             times.append(float(f.readlines()[-1].strip().split(" ")[2]))
         data = pd.read_csv(valuefile,sep=',',header=0, index_col = None, comment="#")
-        listData.append(np.array(data[list(data)[0]][:min(TOP,len(data[list(data)[0]]))]))
+        c = list(data)[0]
+        stop = min(TOP,len(data[c]))
+        dataM=np.array(data[c][:stop])
+        listData.append(dataM)
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.set_ylabel("quality",fontsize=FONTSIZE)
     ax.set_xlabel("iterations",fontsize=FONTSIZE)
@@ -42,6 +44,7 @@ def boxplot(baseFolder, measureName):
     timeAx.tick_params(labelsize=FONTSIZE)
     plt.boxplot(listData)
     plt.xticks(range(1,len(toPlotFiles)+1), iterations, rotation=30)
+    plt.title("TOP "+str(TOP),fontsize = FONTSIZE)
     xlabels = ax.get_xticklabels()
     for label in xlabels:
         label.set_rotation(45) 
@@ -49,4 +52,4 @@ def boxplot(baseFolder, measureName):
     fig.tight_layout()
     plt.savefig(baseFolder+"/boxplot-"+measureName+".pdf",bbox_inches='tight')
 
-boxplot(sys.argv[1],sys.argv[2])
+boxplot(sys.argv[1],sys.argv[2], int(sys.argv[3]))
