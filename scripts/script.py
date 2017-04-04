@@ -174,7 +174,7 @@ def boxplotWithBeta(arffFile, xlbeta = None) :
     fig.tight_layout()
     destination=parentname+"/"+filename+".pdf"
     print "Outputing Figure in %s ..."%destination
-    plt.savefig(parentname+"/"+filename+".pdf",bbox_inches='tight')
+    plt.savefig(destination,bbox_inches='tight')
 
 # ------------------------------------------
 
