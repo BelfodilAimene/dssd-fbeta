@@ -23,3 +23,9 @@ The main experiments results of the paper is given by the script [xp.sh](experim
 Note that the last line of the script ```./launch.sh ../../data/reducedFlags.arff numeric 1``` contains a second parameter ```1``` which is used to test the **MCTS** method against the **complete method** via a **boxplot** as shown in the below image. Note that when testing against the **complete method**, the dataset should be small (the number of patterns is combinatorial). 
 
 ![](experiments/mcts/results/reducedFlags_numeric_6_200_0.5_jaccardSupportDescription/boxplot-RelativeFBeta.png?raw=true)
+
+For the exhaustive list of Figures please launch simply the script [xp.sh](experiments/mcts/xp.sh). The list of results and Figures will be generated in [experiments/mcts/results](experiments/mcts/results) folder.
+
+## [beam](experiments/beam)
+This section give the results shown in the **section 7.5 (page 19)** of the [paper](paper/mlj17.pdf) using **beam search algorithm**. As in the beforehand section, in order to get the exhaustive list of figures, please launch [xp.sh](experiments/beam/xp.sh). Comment the undesired files before launching the script.
+
